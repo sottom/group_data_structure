@@ -11,7 +11,6 @@ namespace GroupDataStructures
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World");
-            Console.WriteLine("Hi guys!");
         }
     }
 }
