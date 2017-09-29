@@ -23,7 +23,8 @@ namespace GroupDataStructures
             string sValue = "";
             Stack<string> stMyStack = new Stack<string>();
             Queue<string> qMyQueue = new Queue<string>();
-            Dictionary<int, string> dMyDictionary = new Dictionary<int, string>();
+            Dictionary<string, int> dMyDictionary = new Dictionary<string, int>();
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             while (iMainMenuChoice != 4)
             {
@@ -221,20 +222,23 @@ namespace GroupDataStructures
                                         case 1:
                                             Console.Write("\nPlease Enter a String: ");
                                             sValue = Console.ReadLine();
-                                            dMyDictionary.Add(iKeyValue++, sValue);
+                                            dMyDictionary.Add(sValue, iKeyValue++);
+                                            Console.WriteLine("\nSuccessfully added item to dictionary");
                                             break;
                                         case 2:
-                                            //Stuff
+                                            dMyDictionary.Clear();
+                                            for (int iCount3 = 0; iCount3 < 2000; iCount3++)
+                                            {
+                                                dMyDictionary.Add("New Entry " + (iCount3 + 1), iCount3 + 1);
+                                            }
+                                            Console.WriteLine("\nSuccessfully added items to dictionary");
                                             break;
                                         case 3:
                                             if (dMyDictionary.Count() > 0)
                                             {
-                                                int iCount = 0;
-                                                Console.WriteLine("\nCurrently in the Dictionary:\n");
-                                                foreach(KeyValuePair<int, string> entry in dMyDictionary)
+                                                foreach(KeyValuePair<string, int> entry in dMyDictionary)
                                                 {
-                                                    Console.WriteLine(dMyDictionary.ElementAt(iCount));
-                                                    iCount++;
+                                                    Console.WriteLine(entry.Key.PadRight(16) + entry.Value);
                                                 }
                                             }
                                             else
@@ -243,14 +247,35 @@ namespace GroupDataStructures
                                             }
                                             break;
                                         case 4:
-                                            //Stuff
+                                            Console.Write("Which item would you like to delete? ");
+                                            string sDel_dictionary = Console.ReadLine();
+                                            if(dMyDictionary.Remove(sDel_dictionary))
+                                            {
+                                                Console.WriteLine("\nItem removed!");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("\nDictionary doesn't contain the key!");
+                                            }
                                             break;
                                         case 5:
                                             dMyDictionary.Clear();
                                             Console.WriteLine("\nDictionary Cleared!");
                                             break;
                                         case 6:
-                                            //Stuff
+                                            Console.Write("Which item would you like to search? ");
+                                            string sSearch_dictionary = Console.ReadLine();
+                                            sw.Start();
+                                            if (dMyDictionary.ContainsKey(sSearch_dictionary))
+                                            {
+                                                Console.WriteLine("\nItem Found!");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("\nItem Not Found!");
+                                            }
+                                            sw.Stop();
+                                            Console.WriteLine("Time elapsed: " + sw.Elapsed);
                                             break;
                                         case 7:
                                             Console.WriteLine();
