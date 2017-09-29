@@ -229,7 +229,7 @@ namespace GroupDataStructures
                                             Console.WriteLine("Which item would you like to delete? (Please Enter a String)");
                                             sValue = Console.ReadLine();
 
-                                            int iMyQCount = qMyQueue.Count; //Local variable only used in the following for loop
+                                            int iMyQCount = qMyQueue.Count(); //Local variable only used in the following for loop
                                             for(int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop iterates through MyQueue and deletes the desired item
                                             {
                                                 if (qMyQueue.ElementAt(iQCount4) == sValue)
@@ -238,14 +238,14 @@ namespace GroupDataStructures
                                                 }
                                                 else //Putting the MyQueue items in the HoldQueue
                                                 {
-                                                    qMyQueue.Dequeue();
-                                                    qHoldQueue.Enqueue(qMyQueue.ElementAt(iQCount4));
+                                                    qHoldQueue.Enqueue(qMyQueue.Dequeue());
+                                                    iQCount4--;
                                                 }
                                             }
                                             foreach (string s in qHoldQueue) //This loop takes the HoldQueue and adds them back to the MyQueue
                                             {
-                                                qHoldQueue.Dequeue();
-                                                qMyQueue.Enqueue(s);
+                                                
+                                                qMyQueue.Enqueue(qHoldQueue.Dequeue());
                                             }
 
                                             Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!\n");
