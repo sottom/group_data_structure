@@ -75,17 +75,18 @@ namespace GroupDataStructures
                                             Console.Write("\nPlease Enter a String: ");
                                             sValue = Console.ReadLine();
                                             stMyStack.Push(sValue);
-                                            Console.Write("Successfully added item to Stack!");
+                                            Console.Write("\nSuccessfully added item to Stack!");
                                             Console.WriteLine();
                                             break;
+
                                         case 2:
                                             for(int i = 2000; i > 0; i--)
                                             {
                                                 stMyStack.Push("New Entry " + i);
                                             }
-                                            Console.WriteLine("Printing the newly added entries!");
-                                            Console.WriteLine();
+                                            Console.WriteLine("\nSuccessfully Added Huge List of Items to Stack!");
                                             break;
+
                                         case 3:
                                             if (stMyStack.Count() > 0)
                                             {
@@ -99,10 +100,16 @@ namespace GroupDataStructures
                                                 Console.WriteLine("\nThere is nothing in the stack!");
                                             }
                                             break;
+
                                         case 4:
+                                            if (stMyStack.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Delete Because Stack is Empty!");
+                                                break;
+                                            }
                                             Stack<string> holdingStack = new Stack<string>();
                                             Stack<string> testingStack = new Stack<string>();
-                                            Console.Write("Which item would you like to delete? (please enter a string): ");
+                                            Console.Write("\nWhich item would you like to delete? (please enter a string): ");
                                             string del_item = Console.ReadLine();
                                             int count = stMyStack.Count();
                                             bool found = false;
@@ -111,7 +118,6 @@ namespace GroupDataStructures
                                                 if(stMyStack.Peek() == del_item)
                                                 {
                                                     stMyStack.Pop();
-                                                    Console.WriteLine(del_item + "deleted");
                                                     found = true;
                                                     break;
                                                 }
@@ -135,12 +141,19 @@ namespace GroupDataStructures
                                                 Console.WriteLine(del_item + " does not exist in this Stack!");
                                             }
                                             break;
+
                                         case 5:
                                             stMyStack.Clear();
                                             Console.WriteLine("\nStack Cleared!");
                                             break;
+
                                         case 6:
-                                            Console.Write("Which item would you like to search for? (please enter a string): ");
+                                            if (stMyStack.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Search Because Stack is Empty!");
+                                                break;
+                                            }
+                                            Console.Write("\nWhich item would you like to search for? (please enter a string): ");
                                             string findItem = Console.ReadLine();
                                             sw.Start();
                                             if (stMyStack.Contains(findItem))
@@ -155,9 +168,11 @@ namespace GroupDataStructures
                                             }
                                             Console.WriteLine("It took " + sw.Elapsed + " seconds");
                                             break;
+
                                         case 7:
                                             Console.WriteLine();
                                             break;
+
                                         default:
                                             iStackMenu = 0;
                                             Console.WriteLine("\nPlease Enter a Menu Option: ");
@@ -175,7 +190,8 @@ namespace GroupDataStructures
                         }
                         iStackMenu = 0;
                         break;
-                    case 2: //PEEBLES *don't play with this homie.//
+
+                    case 2: //Queue
                         while (iQueueMenu != 7)
                         {
                             while (!bQueueCheck)
@@ -200,8 +216,10 @@ namespace GroupDataStructures
                                             Console.Write("\nPlease Enter a String: ");
                                             sValue = Console.ReadLine();
                                             qMyQueue.Enqueue(sValue);
-                                            Console.WriteLine("\nSuccessfully Added Item to Queue!\n"); //Confirmation for the user.
+
+                                            Console.WriteLine("\nSuccessfully Added Item to Queue!"); //Confirmation for the user.
                                             break;
+
                                         case 2: //Add Huge List of Items to Queue
                                             qMyQueue.Clear(); //Clear the queue prior to entering 2000 items
 
@@ -209,8 +227,9 @@ namespace GroupDataStructures
                                             {
                                                 qMyQueue.Enqueue("New Entry " + (iQCount2 + 1));
                                             }
-                                            Console.WriteLine("\nSuccessfully Added Huge List of Items to Queue!\n");
+                                            Console.WriteLine("\nSuccessfully Added Huge List of Items to Queue!");
                                             break;
+
                                         case 3: //Display Queue
                                             if (qMyQueue.Count() > 0)
                                             {
@@ -222,44 +241,87 @@ namespace GroupDataStructures
                                             }
                                             else
                                             {
-                                                Console.WriteLine("\nThere is nothing in the Queue!\n");
+                                                Console.WriteLine("\nThere is nothing in the Queue!");
                                             }
                                             break;
+
                                         case 4: //Delete From Queue
-                                            Console.WriteLine("Which item would you like to delete? (Please Enter a String)");
+                                            if (qMyQueue.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Delete Because Queue is Empty!");
+                                                break;
+                                            }
+                                            Console.WriteLine("\nWhich item would you like to delete? (Please Enter a String)");
                                             sValue = Console.ReadLine();
 
                                             int iMyQCount = qMyQueue.Count(); //Local variable only used in the following for loop
                                             for(int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop iterates through MyQueue and deletes the desired item
                                             {
-                                                if (qMyQueue.ElementAt(iQCount4) == sValue)
+                                                if (qMyQueue.ElementAt(0) == sValue)
                                                 {
                                                     qMyQueue.Dequeue();
                                                 }
                                                 else //Putting the MyQueue items in the HoldQueue
                                                 {
                                                     qHoldQueue.Enqueue(qMyQueue.Dequeue());
-                                                    iQCount4--;
                                                 }
                                             }
-                                            foreach (string s in qHoldQueue) //This loop takes the HoldQueue and adds them back to the MyQueue
+                                            if (iMyQCount > qHoldQueue.Count())
                                             {
-                                                
-                                                qMyQueue.Enqueue(qHoldQueue.Dequeue());
+                                                iMyQCount = qHoldQueue.Count();
+                                                for (int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop transfers all the items from the holding queue to the queue we want to use
+                                                {
+                                                    qMyQueue.Enqueue(qHoldQueue.Dequeue());
+                                                }
+
+                                                Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!");
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                iMyQCount = qHoldQueue.Count();
+                                                for (int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop transfers all the items from the holding queue to the queue we want to use
+                                                {
+                                                    qMyQueue.Enqueue(qHoldQueue.Dequeue());
+                                                }
+
+                                                Console.WriteLine("\n" + sValue + " not found in Queue");
+                                                break;
                                             }
 
-                                            Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!\n");
-                                            break;
                                         case 5: //Clear Queue
                                             qMyQueue.Clear();
-                                            Console.WriteLine("\nSuccessfully Cleared Queue!\n");
+                                            Console.WriteLine("\nSuccessfully Cleared Queue!");
                                             break;
+
                                         case 6: //Search Queue
-                                            //Stuff
+                                            if (qMyQueue.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Search Because Queue is Empty!");
+                                                break;
+                                            }
+                                            Console.WriteLine("\nWhich item would you like to search for? (please enter a string): ");
+                                            sValue = Console.ReadLine();
+
+                                            sw.Start(); //starting the stopwatch
+                                            if (qMyQueue.Contains(sValue))
+                                            {
+                                                sw.Stop();
+                                                Console.WriteLine("\n" + sValue + " was found!");
+                                            }
+                                            else
+                                            {
+                                                sw.Stop();
+                                                Console.WriteLine("\n" + sValue + " was not found!");
+                                            }
+
+                                            Console.WriteLine("\nIt took " + sw.Elapsed + " seconds");
                                             break;
+
                                         case 7: //Return to Main Menu
                                             Console.WriteLine();
                                             break;
+
                                         default:
                                             iQueueMenu = 0;
                                             Console.WriteLine("\nPlease Enter a Menu Option: \n");
@@ -270,7 +332,7 @@ namespace GroupDataStructures
 
                                 catch (Exception)
                                 {
-                                    Console.WriteLine("\nPlease enter a number!\n");
+                                    Console.WriteLine("\nPlease enter a number!");
                                 }
                                 bQueueCheck = true;
                             }
@@ -278,6 +340,7 @@ namespace GroupDataStructures
                         }
                         iQueueMenu = 0;
                         break;
+
                     case 3:
                         while (iDictionaryMenu != 7)
                         {
@@ -299,21 +362,23 @@ namespace GroupDataStructures
                                     switch (iDictionaryMenu)
                                     {
                                         case 1:
-                                            Console.Write("\nPlease Enter a Name for the Key: ");
+                                            Console.Write("\nPlease Enter a Name for the Key (enter a string): ");
                                             sValue = Console.ReadLine();
-                                            Console.Write("\nPlease Enter a Value: ");
+                                            Console.Write("\nPlease Enter a Value (enter an int): ");
                                             iKeyValue = Convert.ToInt32(Console.ReadLine());
                                             dMyDictionary.Add(sValue, iKeyValue);
                                             Console.WriteLine("\nSuccessfully added item to dictionary");
                                             break;
+
                                         case 2:
                                             dMyDictionary.Clear();
                                             for (int iCount3 = 0; iCount3 < 2000; iCount3++)
                                             {
                                                 dMyDictionary.Add("New Entry " + (iCount3 + 1), iCount3 + 1);
                                             }
-                                            Console.WriteLine("\nSuccessfully added items to dictionary");
+                                            Console.WriteLine("\nSuccessfully Added Huge List of Items to Queue!");
                                             break;
+
                                         case 3:
                                             if (dMyDictionary.Count() > 0)
                                             {
@@ -327,7 +392,13 @@ namespace GroupDataStructures
                                                 Console.WriteLine("\nThere is nothing in the dictionary!");
                                             }
                                             break;
+
                                         case 4:
+                                            if(dMyDictionary.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Delete Because Dictionary is Empty!");
+                                                break;
+                                            }
                                             Console.Write("Which item would you like to delete? ");
                                             string sDel_dictionary = Console.ReadLine();
                                             if(dMyDictionary.Remove(sDel_dictionary))
@@ -339,12 +410,21 @@ namespace GroupDataStructures
                                                 Console.WriteLine("\nDictionary doesn't contain the key!");
                                             }
                                             break;
+
                                         case 5:
                                             dMyDictionary.Clear();
                                             Console.WriteLine("\nDictionary Cleared!");
                                             break;
+
                                         case 6:
-                                            Console.Write("\nWhich item would you like to search for? ");
+
+                                            if (dMyDictionary.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Search Because Dictionary is Empty!");
+                                                break;
+                                            }
+                                            Console.Write("\nWhich item would you like to search? ");
+
                                             string sSearch_dictionary = Console.ReadLine();
                                             sw.Start();
                                             if (dMyDictionary.ContainsKey(sSearch_dictionary))
@@ -360,9 +440,11 @@ namespace GroupDataStructures
                                             Console.WriteLine("\nTime elapsed: " + sw.Elapsed);
                                             Console.WriteLine("\n");
                                             break;
+
                                         case 7:
                                             Console.WriteLine();
                                             break;
+
                                         default:
                                             iDictionaryMenu = 0;
                                             Console.WriteLine("\nPlease Enter a Menu Option: ");
@@ -380,8 +462,10 @@ namespace GroupDataStructures
                         }
                         iDictionaryMenu = 0;
                         break;
+
                     case 4:
                         break;
+
                     default:
                         iMainMenuChoice = 0;
                         Console.WriteLine("\nPlease Select a menu option: ");
