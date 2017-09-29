@@ -226,30 +226,48 @@ namespace GroupDataStructures
                                             }
                                             break;
                                         case 4: //Delete From Queue
+                                            if (qMyQueue.Count() == 0)
+                                            {
+                                                Console.WriteLine("\nCannot Delete Because Queue is Empty!\n");
+                                                break;
+                                            }
                                             Console.WriteLine("Which item would you like to delete? (Please Enter a String)");
                                             sValue = Console.ReadLine();
 
                                             int iMyQCount = qMyQueue.Count(); //Local variable only used in the following for loop
                                             for(int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop iterates through MyQueue and deletes the desired item
                                             {
-                                                if (qMyQueue.ElementAt(iQCount4) == sValue)
+                                                if (qMyQueue.ElementAt(0) == sValue)
                                                 {
                                                     qMyQueue.Dequeue();
                                                 }
                                                 else //Putting the MyQueue items in the HoldQueue
                                                 {
                                                     qHoldQueue.Enqueue(qMyQueue.Dequeue());
-                                                    iQCount4--;
                                                 }
                                             }
-                                            foreach (string s in qHoldQueue) //This loop takes the HoldQueue and adds them back to the MyQueue
+                                            if (iMyQCount > qHoldQueue.Count())
                                             {
-                                                
-                                                qMyQueue.Enqueue(qHoldQueue.Dequeue());
-                                            }
+                                                iMyQCount = qHoldQueue.Count();
+                                                for (int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop transfers all the items from the holding queue to the queue we want to use
+                                                {
+                                                    qMyQueue.Enqueue(qHoldQueue.Dequeue());
+                                                }
 
-                                            Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!\n");
-                                            break;
+                                                Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!\n");
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                iMyQCount = qHoldQueue.Count();
+                                                for (int iQCount4 = 0; iQCount4 < iMyQCount; iQCount4++) //This loop transfers all the items from the holding queue to the queue we want to use
+                                                {
+                                                    qMyQueue.Enqueue(qHoldQueue.Dequeue());
+                                                }
+
+                                                Console.WriteLine("\n" + sValue + " not found in Queue\n");
+                                                break;
+                                            }
                                         case 5: //Clear Queue
                                             qMyQueue.Clear();
                                             Console.WriteLine("\nSuccessfully Cleared Queue!\n");
