@@ -43,7 +43,8 @@ namespace GroupDataStructures
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("\nPlease enter a number!");
+                        Console.WriteLine("\nPlease enter a number!\n");
+                        continue;
                     }
                    bMenuCheck = true;
                 }
