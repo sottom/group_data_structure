@@ -299,9 +299,11 @@ namespace GroupDataStructures
                                     switch (iDictionaryMenu)
                                     {
                                         case 1:
-                                            Console.Write("\nPlease Enter a String: ");
+                                            Console.Write("\nPlease Enter a Name for the Key: ");
                                             sValue = Console.ReadLine();
-                                            dMyDictionary.Add(sValue, iKeyValue++);
+                                            Console.Write("\nPlease Enter a Value: ");
+                                            iKeyValue = Convert.ToInt32(Console.ReadLine());
+                                            dMyDictionary.Add(sValue, iKeyValue);
                                             Console.WriteLine("\nSuccessfully added item to dictionary");
                                             break;
                                         case 2:
@@ -342,19 +344,21 @@ namespace GroupDataStructures
                                             Console.WriteLine("\nDictionary Cleared!");
                                             break;
                                         case 6:
-                                            Console.Write("Which item would you like to search? ");
+                                            Console.Write("\nWhich item would you like to search? ");
                                             string sSearch_dictionary = Console.ReadLine();
                                             sw.Start();
                                             if (dMyDictionary.ContainsKey(sSearch_dictionary))
                                             {
+                                                sw.Stop();
                                                 Console.WriteLine("\nItem Found!");
                                             }
                                             else
                                             {
+                                                sw.Stop();
                                                 Console.WriteLine("\nItem Not Found!");
                                             }
-                                            sw.Stop();
-                                            Console.WriteLine("Time elapsed: " + sw.Elapsed);
+                                            Console.WriteLine("\nTime elapsed: " + sw.Elapsed);
+                                            Console.WriteLine("\n");
                                             break;
                                         case 7:
                                             Console.WriteLine();
