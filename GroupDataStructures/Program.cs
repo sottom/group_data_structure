@@ -88,6 +88,7 @@ namespace GroupDataStructures
                                             break;
 
                                         case 3:
+                                            Console.WriteLine();
                                             if (stMyStack.Count() > 0)
                                             {
                                                 foreach (string s in stMyStack)
@@ -148,6 +149,7 @@ namespace GroupDataStructures
                                             break;
 
                                         case 6:
+                                            Console.WriteLine();
                                             if (stMyStack.Count() == 0)
                                             {
                                                 Console.WriteLine("\nCannot Search Because Stack is Empty!");
@@ -166,7 +168,7 @@ namespace GroupDataStructures
                                                 sw.Stop();
                                                 Console.WriteLine(findItem + " was not found!");
                                             }
-                                            Console.WriteLine("It took " + sw.Elapsed + " seconds");
+                                            Console.WriteLine("This search took " + sw.Elapsed + " seconds");
                                             break;
 
                                         case 7:
