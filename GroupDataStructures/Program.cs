@@ -277,7 +277,6 @@ namespace GroupDataStructures
                                                     qMyQueue.Enqueue(qHoldQueue.Dequeue());
                                                 }
 
-
                                                 Console.WriteLine("\n" + sValue + " not found in Queue\n");
                                                 break;
                                             }
