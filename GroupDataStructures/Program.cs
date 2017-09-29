@@ -191,7 +191,7 @@ namespace GroupDataStructures
                         iStackMenu = 0;
                         break;
 
-                    case 2: //PEEBLES *don't play with this homie.//
+                    case 2: //Queue
                         while (iQueueMenu != 7)
                         {
                             while (!bQueueCheck)
