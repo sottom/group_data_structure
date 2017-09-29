@@ -141,16 +141,18 @@ namespace GroupDataStructures
                                         case 6:
                                             Console.Write("Which item would you like to search for? (please enter a string): ");
                                             string findItem = Console.ReadLine();
+                                            sw.Start();
                                             if (stMyStack.Contains(findItem))
                                             {
+                                                sw.Stop();
                                                 Console.WriteLine(findItem + " was found!");
-                                                Console.WriteLine("It took " + "" + " seconds");
                                             }
                                             else
                                             {
+                                                sw.Stop();
                                                 Console.WriteLine(findItem + " was not found!");
-                                                Console.WriteLine("It took " + "" + " seconds");
                                             }
+                                            Console.WriteLine("It took " + sw.Elapsed + " seconds");
                                             break;
                                         case 7:
                                             Console.WriteLine();
