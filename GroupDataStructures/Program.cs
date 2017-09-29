@@ -22,11 +22,13 @@ namespace GroupDataStructures
             bool bDictionaryCheck = false;
             string sValue = "";
             Stack<string> stMyStack = new Stack<string>();
+            Stack<string> holdingStack = new Stack<string>();
             Queue<string> qMyQueue = new Queue<string>();
             Queue <string> qHoldQueue = new Queue<string>();
             Dictionary<string, int> dMyDictionary = new Dictionary<string, int>();
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
+            // do the program until they do the 4th option (exit)
             while (iMainMenuChoice != 4)
             {
                 while (!bMenuCheck)
@@ -52,6 +54,7 @@ namespace GroupDataStructures
                 switch (iMainMenuChoice)
                 {
                     case 1:
+                        // enter unless they choose 7
                         while (iStackMenu != 7)
                         {
                             while (!bStackCheck)
@@ -73,14 +76,18 @@ namespace GroupDataStructures
                                     switch (iStackMenu)
                                     {
                                         case 1:
+                                            // grab user input
                                             Console.Write("\nPlease Enter a String: ");
                                             sValue = Console.ReadLine();
                                             stMyStack.Push(sValue);
+
+                                            // add to stack
                                             Console.Write("\nSuccessfully added item to Stack!");
                                             Console.WriteLine();
                                             break;
 
                                         case 2:
+                                            //generate 2000 new entries and push into stack
                                             for(int i = 2000; i > 0; i--)
                                             {
                                                 stMyStack.Push("New Entry " + i);
@@ -89,14 +96,16 @@ namespace GroupDataStructures
                                             break;
 
                                         case 3:
-                                            Console.WriteLine();
+                                            // display contents of stack
                                             if (stMyStack.Count() > 0)
                                             {
+                                                Console.WriteLine();
                                                 foreach (string s in stMyStack)
                                                 {
                                                     Console.WriteLine(s);
                                                 }
                                             }
+                                            // inform that the stack was empty
                                             else
                                             {
                                                 Console.WriteLine("\nThere is nothing in the stack!");
@@ -104,85 +113,114 @@ namespace GroupDataStructures
                                             break;
 
                                         case 4:
+                                            // break if nothing is in the stack to delete
                                             if (stMyStack.Count() == 0)
                                             {
                                                 Console.WriteLine("\nCannot Delete Because Stack is Empty!");
                                                 break;
                                             }
-                                            Stack<string> holdingStack = new Stack<string>();
-                                            Stack<string> testingStack = new Stack<string>();
+
+                                            // get user input
                                             Console.Write("\nWhich item would you like to delete? (please enter a string): ");
                                             string del_item = Console.ReadLine();
+
+                                            // save original stack count
                                             int count = stMyStack.Count();
                                             bool found = false;
+
+                                            //loop through stack to find item user wants to delete
                                             for(int i = 0; i < count; i++)
                                             {
+                                                // enter if the item in the stack matches the item to be deleted
                                                 if(stMyStack.Peek() == del_item)
                                                 {
+                                                    // remove item from the stack and break out of the loop
                                                     stMyStack.Pop();
                                                     found = true;
                                                     break;
                                                 }
+                                                // add unmatched stack item to holding stack
                                                 else
                                                 {
                                                     holdingStack.Push(stMyStack.Pop());
                                                 }
                                             }
+
+                                            // store original count of holding stack
                                             int hCount = holdingStack.Count();
+
+                                            // push holding stack items back onto original stack
                                             for(int i = 0; i < hCount; i++)
                                             {
                                                 stMyStack.Push(holdingStack.Pop());
                                             }
+
                                             Console.WriteLine();
+
+                                            // if the item was found in the stack, inform that it was deleted
                                             if (found)
                                             {
                                                 Console.WriteLine(del_item + " was deleted!");
                                             }
+                                            // if the item was not found in the stack, inform user
                                             else
                                             {
-                                                Console.WriteLine(del_item + " does not exist in this Stack!");
+                                                Console.WriteLine(del_item + " cannot be deleted because it does not exist in the Stack!");
                                             }
                                             break;
 
                                         case 5:
+                                            // clear the stack
                                             stMyStack.Clear();
                                             Console.WriteLine("\nStack Cleared!");
                                             break;
 
                                         case 6:
-                                            Console.WriteLine();
+
+                                            // don't search stack if it is empty
                                             if (stMyStack.Count() == 0)
                                             {
                                                 Console.WriteLine("\nCannot Search Because Stack is Empty!");
                                                 break;
                                             }
+
+                                            // get user input on which item to search for
                                             Console.Write("\nWhich item would you like to search for? (please enter a string): ");
                                             string findItem = Console.ReadLine();
+
+                                            // start a stop watch to see how long it takes to find the item
                                             sw.Start();
                                             if (stMyStack.Contains(findItem))
                                             {
+                                                //stop the stopwatch and inform user that the item was found
                                                 sw.Stop();
                                                 Console.WriteLine(findItem + " was found!");
                                             }
                                             else
                                             {
+                                                //stop the stopwatch and inform user that the item was not found
                                                 sw.Stop();
                                                 Console.WriteLine(findItem + " was not found!");
                                             }
+
+                                            // show how long each search took
                                             Console.WriteLine("This search took " + sw.Elapsed + " seconds");
                                             break;
 
                                         case 7:
+                                            // newline (this will break out of the while loop 
                                             Console.WriteLine();
                                             break;
 
                                         default:
+                                            // prompt user to input a menu option
                                             iStackMenu = 0;
                                             Console.WriteLine("\nPlease Enter a Menu Option: ");
                                             bStackCheck = false;
                                             break;
                                     }
                                 }
+                                // catch any strings that are entered when they should be numbers
                                 catch (Exception)
                                 {
                                     Console.WriteLine("\nPlease enter a number!");
