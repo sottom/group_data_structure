@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,11 +15,15 @@ namespace GroupDataStructures
             int iStackMenu = 0;
             int iQueueMenu = 0;
             int iDictionaryMenu = 0;
+            int iKeyValue = 0;
             bool bMenuCheck = false;
             bool bStackCheck = false;
             bool bQueueCheck = false;
             bool bDictionaryCheck = false;
-
+            string sValue = "";
+            Stack<string> stMyStack = new Stack<string>();
+            Queue<string> qMyQueue = new Queue<string>();
+            Dictionary<int, string> dMyDictionary = new Dictionary<int, string>();
 
             while (iMainMenuChoice != 4)
             {
@@ -29,174 +34,249 @@ namespace GroupDataStructures
                         Console.WriteLine("1. Stack");
                         Console.WriteLine("2. Queue");
                         Console.WriteLine("3. Dictionary");
-                        Console.WriteLine("4. Exit");
-                    
+                        Console.WriteLine("4. Exit\n");
+                        Console.Write("Menu Choice: ");
+
                         iMainMenuChoice = Convert.ToInt32(Console.ReadLine());
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Please enter a number: ");
+                        Console.WriteLine("\nPlease enter a number!");
                     }
-                    bMenuCheck = true;
+                   bMenuCheck = true;
                 }
+                bMenuCheck = false;
                 switch (iMainMenuChoice)
                 {
                     case 1:
-                        while (!bStackCheck)
+                        while (iStackMenu != 7)
                         {
-                            try
+                            while (!bStackCheck)
                             {
-                                Console.WriteLine("1. Add One Time to Stack");
-                                Console.WriteLine("2. Add Huge List of Items to Stack");
-                                Console.WriteLine("3. Display Stack");
-                                Console.WriteLine("4. Delete From Stack");
-                                Console.WriteLine("5. Clear Stack");
-                                Console.WriteLine("6. Search Stack");
-                                Console.WriteLine("7. Return to Main Menu");
-                                iStackMenu = Convert.ToInt32(Console.ReadLine());
-
-                                switch (iStackMenu)
+                                try
                                 {
-                                    case 1:
-                                        //Stuff
-                                        break;
-                                    case 2:
-                                        //Stuff
-                                        break;
-                                    case 3:
-                                        //Stuff
-                                        break;
-                                    case 4:
-                                        //Stuff
-                                        break;
-                                    case 5:
-                                        //Stuff
-                                        break;
-                                    case 6:
-                                        //Stuff
-                                        break;
-                                    case 7:
-                                        //Stuff
-                                        break;
-                                    default:
-                                        iStackMenu = 0;
-                                        Console.WriteLine("Please Enter a Menu Option: ");
-                                        bStackCheck = false;
-                                        break;
+                                    Console.WriteLine("\n1. Add One Time to Stack");
+                                    Console.WriteLine("2. Add Huge List of Items to Stack");
+                                    Console.WriteLine("3. Display Stack");
+                                    Console.WriteLine("4. Delete From Stack");
+                                    Console.WriteLine("5. Clear Stack");
+                                    Console.WriteLine("6. Search Stack");
+                                    Console.WriteLine("7. Return to Main Menu\n");
+
+                                    Console.Write("Stack Menu Choice: ");
+
+                                    iStackMenu = Convert.ToInt32(Console.ReadLine());
+
+                                    switch (iStackMenu)
+                                    {
+                                        case 1:
+                                            Console.Write("\nPlease Enter a String: ");
+                                            sValue = Console.ReadLine();
+                                            stMyStack.Push(sValue);
+                                            break;
+                                        case 2:
+                                            //Stuff
+                                            break;
+                                        case 3:
+                                            if (stMyStack.Count() > 0)
+                                            {
+                                                int iCount = 0;
+                                                Console.WriteLine("\nCurrently in the stack:\n");
+                                                foreach (string s in stMyStack)
+                                                {
+                                                    Console.WriteLine(stMyStack.ElementAt(iCount));
+                                                    iCount++;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("\nThere is nothing in the stack!");
+                                            }
+                                            break;
+                                        case 4:
+                                            //Stuff
+                                            break;
+                                        case 5:
+                                            stMyStack.Clear();
+                                            Console.WriteLine("\nStack Cleared!");
+                                            break;
+                                        case 6:
+                                            //Stuff
+                                            break;
+                                        case 7:
+                                            Console.WriteLine();
+                                            break;
+                                        default:
+                                            iStackMenu = 0;
+                                            Console.WriteLine("\nPlease Enter a Menu Option: ");
+                                            bStackCheck = false;
+                                            break;
+                                    }
                                 }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine("\nPlease enter a number!");
+                                }
+                                bStackCheck = true;
                             }
-                            catch (Exception)
-                            {
-                                Console.WriteLine("Please enter a number: ");
-                            }
-                            bStackCheck = true;
+                            bStackCheck = false;
                         }
+                        iStackMenu = 0;
                         break;
                     case 2:
-                        while (!bQueueCheck)
+                        while (iQueueMenu != 7)
                         {
-                            try
+                            while (!bQueueCheck)
                             {
-                                Console.WriteLine("1. Add One Time to Queue");
-                                Console.WriteLine("2. Add Huge List of Items to Queue");
-                                Console.WriteLine("3. Display Queue");
-                                Console.WriteLine("4. Delete From Queue");
-                                Console.WriteLine("5. Clear Queue");
-                                Console.WriteLine("6. Search Queue");
-                                Console.WriteLine("7. Return to Main Menu");
-                                iQueueMenu = Convert.ToInt32(Console.ReadLine());
-
-                                switch (iQueueMenu)
+                                try
                                 {
-                                    case 1:
-                                        //Stuff
-                                        break;
-                                    case 2:
-                                        //Stuff
-                                        break;
-                                    case 3:
-                                        //Stuff
-                                        break;
-                                    case 4:
-                                        //Stuff
-                                        break;
-                                    case 5:
-                                        //Stuff
-                                        break;
-                                    case 6:
-                                        //Stuff
-                                        break;
-                                    case 7:
-                                        //Stuff
-                                        break;
-                                    default:
-                                        iQueueMenu = 0;
-                                        Console.WriteLine("Please Enter a Menu Option: ");
-                                        bQueueCheck = false;
-                                        break;
+                                    Console.WriteLine("\n1. Add One Time to Queue");
+                                    Console.WriteLine("2. Add Huge List of Items to Queue");
+                                    Console.WriteLine("3. Display Queue");
+                                    Console.WriteLine("4. Delete From Queue");
+                                    Console.WriteLine("5. Clear Queue");
+                                    Console.WriteLine("6. Search Queue");
+                                    Console.WriteLine("7. Return to Main Menu\n");
+
+                                    Console.Write("Queue Menu Choice: ");
+
+                                    iQueueMenu = Convert.ToInt32(Console.ReadLine());
+
+                                    switch (iQueueMenu)
+                                    {
+                                        case 1:
+                                            Console.Write("\nPlease Enter a String: ");
+                                            sValue = Console.ReadLine();
+                                            qMyQueue.Enqueue(sValue);
+                                            break;
+                                        case 2:
+                                            //Stuff
+                                            break;
+                                        case 3:
+                                            if (qMyQueue.Count() > 0)
+                                            {
+                                                int iCount = 0;
+                                                Console.WriteLine("\nCurrently in the Queue:\n");
+                                                foreach (string s in qMyQueue)
+                                                {
+                                                    Console.WriteLine(qMyQueue.ElementAt(iCount));
+                                                    iCount++;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("\nThere is nothing in the Queue!");
+                                            }
+                                            break;
+                                        case 4:
+                                            //Stuff
+                                            break;
+                                        case 5:
+                                            qMyQueue.Clear();
+                                            Console.WriteLine("\nQueue Cleared!");
+                                            break;
+                                        case 6:
+                                            //Stuff
+                                            break;
+                                        case 7:
+                                            Console.WriteLine();
+                                            break;
+                                        default:
+                                            iQueueMenu = 0;
+                                            Console.WriteLine("\nPlease Enter a Menu Option: ");
+                                            bQueueCheck = false;
+                                            break;
+                                    }
                                 }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine("\nPlease enter a number!");
+                                }
+                                bQueueCheck = true;
                             }
-                            catch (Exception)
-                            {
-                                Console.WriteLine("Please enter a number: ");
-                            }
-                            bQueueCheck = true;
+                            bQueueCheck = false;
                         }
+                        iQueueMenu = 0;
                         break;
                     case 3:
-                        while (!bDictionaryCheck)
+                        while (iDictionaryMenu != 7)
                         {
-                            try
+                            while (!bDictionaryCheck)
                             {
-                                Console.WriteLine("1. Add One Time to Dictionary");
-                                Console.WriteLine("2. Add Huge List of Items to Dictionary");
-                                Console.WriteLine("3. Display Dictionary");
-                                Console.WriteLine("4. Delete From Dictionary");
-                                Console.WriteLine("5. Clear Dictionary");
-                                Console.WriteLine("6. Search Dictionary");
-                                Console.WriteLine("7. Return to Main Menu");
-                                iDictionaryMenu = Convert.ToInt32(Console.ReadLine());
-
-                                switch (iDictionaryMenu)
+                                try
                                 {
-                                    case 1:
-                                        //Stuff
-                                        break;
-                                    case 2:
-                                        //Stuff
-                                        break;
-                                    case 3:
-                                        //Stuff
-                                        break;
-                                    case 4:
-                                        //Stuff
-                                        break;
-                                    case 5:
-                                        //Stuff
-                                        break;
-                                    case 6:
-                                        //Stuff
-                                        break;
-                                    case 7:
-                                        //Stuff
-                                        break;
-                                    default:
-                                        iDictionaryMenu = 0;
-                                        Console.WriteLine("Please Enter a Menu Option: ");
-                                        bDictionaryCheck = false;
-                                        break;
+                                    Console.WriteLine("\n1. Add One Time to Dictionary");
+                                    Console.WriteLine("2. Add Huge List of Items to Dictionary");
+                                    Console.WriteLine("3. Display Dictionary");
+                                    Console.WriteLine("4. Delete From Dictionary");
+                                    Console.WriteLine("5. Clear Dictionary");
+                                    Console.WriteLine("6. Search Dictionary");
+                                    Console.WriteLine("7. Return to Main Menu\n");
+
+                                    Console.Write("Dictionary Menu Choice: ");
+                                    iDictionaryMenu = Convert.ToInt32(Console.ReadLine());
+
+                                    switch (iDictionaryMenu)
+                                    {
+                                        case 1:
+                                            Console.Write("\nPlease Enter a String: ");
+                                            sValue = Console.ReadLine();
+                                            dMyDictionary.Add(iKeyValue++, sValue);
+                                            break;
+                                        case 2:
+                                            //Stuff
+                                            break;
+                                        case 3:
+                                            if (dMyDictionary.Count() > 0)
+                                            {
+                                                int iCount = 0;
+                                                Console.WriteLine("\nCurrently in the Dictionary:\n");
+                                                foreach(KeyValuePair<int, string> entry in dMyDictionary)
+                                                {
+                                                    Console.WriteLine(dMyDictionary.ElementAt(iCount));
+                                                    iCount++;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("\nThere is nothing in the dictionary!");
+                                            }
+                                            break;
+                                        case 4:
+                                            //Stuff
+                                            break;
+                                        case 5:
+                                            dMyDictionary.Clear();
+                                            Console.WriteLine("\nDictionary Cleared!");
+                                            break;
+                                        case 6:
+                                            //Stuff
+                                            break;
+                                        case 7:
+                                            Console.WriteLine();
+                                            break;
+                                        default:
+                                            iDictionaryMenu = 0;
+                                            Console.WriteLine("\nPlease Enter a Menu Option: ");
+                                            bDictionaryCheck = false;
+                                            break;
+                                    }
                                 }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine("\nPlease enter a number!");
+                                }
+                                bDictionaryCheck = true;
                             }
-                            catch (Exception)
-                            {
-                                Console.WriteLine("Please enter a number: ");
-                            }
-                            bDictionaryCheck = true;
+                            bDictionaryCheck = false;
                         }
+                        iDictionaryMenu = 0;
+                        break;
+                    case 4:
                         break;
                     default:
                         iMainMenuChoice = 0;
-                        Console.WriteLine("Please Select a menu option: ");
+                        Console.WriteLine("\nPlease Select a menu option: ");
                         bMenuCheck = false;
                         break;
                 }
