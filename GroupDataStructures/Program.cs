@@ -73,19 +73,23 @@ namespace GroupDataStructures
                                             Console.Write("\nPlease Enter a String: ");
                                             sValue = Console.ReadLine();
                                             stMyStack.Push(sValue);
+                                            Console.Write("Successfully added item to Stack!");
+                                            Console.WriteLine();
                                             break;
                                         case 2:
-                                            //Stuff
+                                            for(int i = 2000; i > 0; i--)
+                                            {
+                                                stMyStack.Push("New Entry " + i);
+                                            }
+                                            Console.WriteLine("Printing the newly added entries!");
+                                            Console.WriteLine();
                                             break;
                                         case 3:
                                             if (stMyStack.Count() > 0)
                                             {
-                                                int iCount = 0;
-                                                Console.WriteLine("\nCurrently in the stack:\n");
                                                 foreach (string s in stMyStack)
                                                 {
-                                                    Console.WriteLine(stMyStack.ElementAt(iCount));
-                                                    iCount++;
+                                                    Console.WriteLine(s);
                                                 }
                                             }
                                             else
@@ -94,14 +98,58 @@ namespace GroupDataStructures
                                             }
                                             break;
                                         case 4:
-                                            //Stuff
+                                            Stack<string> holdingStack = new Stack<string>();
+                                            Stack<string> testingStack = new Stack<string>();
+                                            Console.Write("Which item would you like to delete? (please enter a string): ");
+                                            string del_item = Console.ReadLine();
+                                            int count = stMyStack.Count();
+                                            bool found = false;
+                                            for(int i = 0; i < count; i++)
+                                            {
+                                                if(stMyStack.Peek() == del_item)
+                                                {
+                                                    stMyStack.Pop();
+                                                    Console.WriteLine(del_item + "deleted");
+                                                    found = true;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    holdingStack.Push(stMyStack.Pop());
+                                                }
+                                            }
+                                            int hCount = holdingStack.Count();
+                                            for(int i = 0; i < hCount; i++)
+                                            {
+                                                stMyStack.Push(holdingStack.Pop());
+                                            }
+                                            Console.WriteLine();
+                                            if (found)
+                                            {
+                                                Console.WriteLine(del_item + " was deleted!");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(del_item + " does not exist in this Stack!");
+                                            }
                                             break;
                                         case 5:
                                             stMyStack.Clear();
                                             Console.WriteLine("\nStack Cleared!");
                                             break;
                                         case 6:
-                                            //Stuff
+                                            Console.Write("Which item would you like to search for? (please enter a string): ");
+                                            string findItem = Console.ReadLine();
+                                            if (stMyStack.Contains(findItem))
+                                            {
+                                                Console.WriteLine(findItem + " was found!");
+                                                Console.WriteLine("It took " + "" + " seconds");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(findItem + " was not found!");
+                                                Console.WriteLine("It took " + "" + " seconds");
+                                            }
                                             break;
                                         case 7:
                                             Console.WriteLine();
