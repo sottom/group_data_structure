@@ -277,15 +277,11 @@ namespace GroupDataStructures
                                                     qMyQueue.Enqueue(qHoldQueue.Dequeue());
                                                 }
 
-<<<<<<< HEAD
+
                                                 Console.WriteLine("\n" + sValue + " not found in Queue\n");
                                                 break;
                                             }
-=======
-                                            Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!\n");
-                                            break;
 
->>>>>>> 16b4d7525a4a9f1675683a0380d258b6f4e84440
                                         case 5: //Clear Queue
                                             qMyQueue.Clear();
                                             Console.WriteLine("\nSuccessfully Cleared Queue!\n");
