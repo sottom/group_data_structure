@@ -342,7 +342,7 @@ namespace GroupDataStructures
                         iQueueMenu = 0;
                         break;
 
-                    case 3:
+                    case 3: //dictionary
                         while (iDictionaryMenu != 7)
                         {
                             while (!bDictionaryCheck)
@@ -362,7 +362,7 @@ namespace GroupDataStructures
 
                                     switch (iDictionaryMenu)
                                     {
-                                        case 1:
+                                        case 1: //add one item to dictionary
                                             Console.Write("\nPlease Enter a Name for the Key (enter a string): ");
                                             sValue = Console.ReadLine();
                                             Console.Write("\nPlease Enter a Value (enter an int): ");
@@ -371,7 +371,7 @@ namespace GroupDataStructures
                                             Console.WriteLine("\nSuccessfully added item to dictionary");
                                             break;
 
-                                        case 2:
+                                        case 2: //add 2000 items to queue
                                             dMyDictionary.Clear();
                                             for (int iCount3 = 0; iCount3 < 2000; iCount3++)
                                             {
@@ -380,7 +380,7 @@ namespace GroupDataStructures
                                             Console.WriteLine("\nSuccessfully Added Huge List of Items to Queue!");
                                             break;
 
-                                        case 3:
+                                        case 3: //display all items in dictionary
                                             if (dMyDictionary.Count() > 0)
                                             {
                                                 foreach(KeyValuePair<string, int> entry in dMyDictionary)
@@ -394,7 +394,7 @@ namespace GroupDataStructures
                                             }
                                             break;
 
-                                        case 4:
+                                        case 4: //delete item in dictionary
                                             if(dMyDictionary.Count() == 0)
                                             {
                                                 Console.WriteLine("\nCannot Delete Because Dictionary is Empty!");
@@ -412,35 +412,37 @@ namespace GroupDataStructures
                                             }
                                             break;
 
-                                        case 5:
+                                        case 5: //clear dictionary
                                             dMyDictionary.Clear();
                                             Console.WriteLine("\nDictionary Cleared!");
                                             break;
 
-                                        case 6:
+                                        case 6: //search dictionary
+
                                             if (dMyDictionary.Count() == 0)
                                             {
                                                 Console.WriteLine("\nCannot Search Because Dictionary is Empty!");
                                                 break;
                                             }
                                             Console.Write("\nWhich item would you like to search? ");
+
                                             string sSearch_dictionary = Console.ReadLine();
                                             sw.Start();
                                             if (dMyDictionary.ContainsKey(sSearch_dictionary))
                                             {
-                                                sw.Stop();
+                                                sw.Stop();//start stopwatch
                                                 Console.WriteLine("\nItem Found!");
                                             }
                                             else
                                             {
-                                                sw.Stop();
+                                                sw.Stop();//stop stopwatch
                                                 Console.WriteLine("\nItem Not Found!");
                                             }
                                             Console.WriteLine("\nTime elapsed: " + sw.Elapsed);
                                             Console.WriteLine("\n");
                                             break;
 
-                                        case 7:
+                                        case 7://return to the menu
                                             Console.WriteLine();
                                             break;
 
