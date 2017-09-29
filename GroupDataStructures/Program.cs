@@ -344,7 +344,7 @@ namespace GroupDataStructures
                                             Console.WriteLine("\nDictionary Cleared!");
                                             break;
                                         case 6:
-                                            Console.Write("\nWhich item would you like to search? ");
+                                            Console.Write("\nWhich item would you like to search for? ");
                                             string sSearch_dictionary = Console.ReadLine();
                                             sw.Start();
                                             if (dMyDictionary.ContainsKey(sSearch_dictionary))
