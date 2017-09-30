@@ -467,10 +467,10 @@ namespace GroupDataStructures
                                             Console.Write("\nWhich item would you like to search? ");
 
                                             string sSearch_dictionary = Console.ReadLine();
-                                            sw.Start();
+                                            sw.Start();//start stopwatch
                                             if (dMyDictionary.ContainsKey(sSearch_dictionary))
                                             {
-                                                sw.Stop();//start stopwatch
+                                                sw.Stop();//stop stopwatch
                                                 Console.WriteLine("\nItem Found!");
                                             }
                                             else
