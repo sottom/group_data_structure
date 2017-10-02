@@ -204,7 +204,7 @@ namespace GroupDataStructures
                                             }
 
                                             // show how long each search took
-                                            Console.WriteLine("This search took " + sw.Elapsed + " seconds");
+                                            Console.WriteLine("\nThis search took " + sw.Elapsed + " seconds.");
                                             break;
 
                                         case 7:
@@ -232,13 +232,13 @@ namespace GroupDataStructures
                         iStackMenu = 0;
                         break;
 
-                    case 2: //Queue
+                    case 2: //Queue option chosen from the main menu
                         while (iQueueMenu != 7)
                         {
                             while (!bQueueCheck)
                             {
                                 try
-                                {
+                                {   //Here is the Queue Menu
                                     Console.WriteLine("\n1. Add One Time to Queue");
                                     Console.WriteLine("2. Add Huge List of Items to Queue");
                                     Console.WriteLine("3. Display Queue");
@@ -302,7 +302,7 @@ namespace GroupDataStructures
                                                 {
                                                     qMyQueue.Dequeue();
                                                 }
-                                                else //Putting the MyQueue items in the HoldQueue
+                                                else //Putting the MyQueue items in the HoldQueue (temporarily)
                                                 {
                                                     qHoldQueue.Enqueue(qMyQueue.Dequeue());
                                                 }
@@ -315,7 +315,7 @@ namespace GroupDataStructures
                                                     qMyQueue.Enqueue(qHoldQueue.Dequeue());
                                                 }
 
-                                                Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!");
+                                                Console.WriteLine("\nSuccessfully Deleted '" + sValue + "' From Queue!"); //Validation for the user
                                                 break;
                                             }
                                             else
@@ -326,7 +326,7 @@ namespace GroupDataStructures
                                                     qMyQueue.Enqueue(qHoldQueue.Dequeue());
                                                 }
 
-                                                Console.WriteLine("\n" + sValue + " not found in Queue");
+                                                Console.WriteLine("\n" + sValue + " not found in Queue"); //Validation for the user
                                                 break;
                                             }
 
@@ -338,7 +338,7 @@ namespace GroupDataStructures
                                         case 6: //Search Queue
                                             if (qMyQueue.Count() == 0)
                                             {
-                                                Console.WriteLine("\nCannot Search Because Queue is Empty!");
+                                                Console.WriteLine("\nCannot Search Because Queue is Empty!"); //Help for the user
                                                 break;
                                             }
                                             Console.WriteLine("\nWhich item would you like to search for? (please enter a string): ");
@@ -356,7 +356,7 @@ namespace GroupDataStructures
                                                 Console.WriteLine("\n" + sValue + " was not found!");
                                             }
 
-                                            Console.WriteLine("\nIt took " + sw.Elapsed + " seconds");
+                                            Console.WriteLine("\nThis search took " + sw.Elapsed + " seconds.");
                                             break;
 
                                         case 7: //Return to Main Menu
@@ -478,7 +478,7 @@ namespace GroupDataStructures
                                                 sw.Stop();//stop stopwatch
                                                 Console.WriteLine("\nItem Not Found!");
                                             }
-                                            Console.WriteLine("\nTime elapsed: " + sw.Elapsed);
+                                            Console.WriteLine("\nThis search took " + sw.Elapsed + " seconds.");
                                             Console.WriteLine("\n");
                                             break;
 
