@@ -88,6 +88,7 @@ namespace GroupDataStructures
 
                                         case 2:
                                             //generate 2000 new entries and push into stack
+                                            stMyStack.Clear();
                                             for(int i = 2000; i > 0; i--)
                                             {
                                                 stMyStack.Push("New Entry " + i);
@@ -464,7 +465,7 @@ namespace GroupDataStructures
                                                 Console.WriteLine("\nCannot Search Because Dictionary is Empty!");
                                                 break;
                                             }
-                                            Console.Write("\nWhich item would you like to search? ");
+                                            Console.Write("\nWhich item would you like to search for? ");
 
                                             string sSearch_dictionary = Console.ReadLine();
                                             sw.Start();//start stopwatch
